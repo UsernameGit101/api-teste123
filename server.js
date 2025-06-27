@@ -1,12 +1,18 @@
-
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
 
-const PORT = process.env.PORT || 3000; // importante para o Render
+// Habilita CORS para todas as origens (ideal para dev, não produção)
+app.use(cors());
+
+// origem específica:
+// app.use(cors({ origin: 'https://api-teste123-frontend.onrender.com' }));
+
+
+app.use(express.json());
+
+// rotas
 app.get('/api/businesses', (req, res) => {
   res.json([{ id: 1, name: 'Cervejaria da avenida' }]);
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor HTTP ativo na porta ${PORT}`);
 });
